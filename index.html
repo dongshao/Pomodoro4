@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,55 +8,68 @@
   <meta name="description" content="极简、优雅的番茄钟专注计时器。支持自定义时长、浏览器通知与暗色模式。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
     /* ── Design Tokens ─────────────────────────────────────────── */
     :root {
-      --bg:        #f5f0eb;
-      --surface:   #ede7df;
-      --surface2:  #e3dbd1;
-      --border:    #d5cbc0;
-      --text:      #2c2420;
-      --text-muted:#8a7d74;
-      --accent:    #c0392b;
-      --accent-hl: #e74c3c;
-      --accent-dim:#f5d0cc;
-      --break:     #2e7d5d;
-      --break-hl:  #3a9970;
+      --bg: #f5f0eb;
+      --surface: #ede7df;
+      --surface2: #e3dbd1;
+      --border: #d5cbc0;
+      --text: #2c2420;
+      --text-muted: #8a7d74;
+      --accent: #6b3820;
+      --accent-hl: #7d4428;
+      --accent-dim: #ecddd7;
+      --break: #2e7d5d;
+      --break-hl: #3a9970;
       --break-dim: #c8e6d8;
-      --lbreak:    #2471a3;
+      --lbreak: #2471a3;
       --lbreak-hl: #2980b9;
-      --lbreak-dim:#cce0f5;
-      --ring-bg:   #ddd5cc;
-      --shadow:    0 8px 40px rgba(44,36,32,.12);
-      --radius:    20px;
-      --font-num:  'Playfair Display', serif;
-      --font-ui:   'DM Sans', sans-serif;
-      --transition: 300ms cubic-bezier(.4,0,.2,1);
+      --lbreak-dim: #cce0f5;
+      --ring-bg: #ddd5cc;
+      --shadow: 0 8px 40px rgba(44, 36, 32, .12);
+      --radius: 20px;
+      --font-num: 'Playfair Display', serif;
+      --font-ui: 'DM Sans', sans-serif;
+      --transition: 300ms cubic-bezier(.4, 0, .2, 1);
     }
+
     [data-theme="dark"] {
-      --bg:        #1a1512;
-      --surface:   #231e1a;
-      --surface2:  #2d2722;
-      --border:    #3d3530;
-      --text:      #f0ebe4;
-      --text-muted:#8a7d74;
-      --accent:    #e55347;
-      --accent-hl: #ff6b5e;
-      --accent-dim:#401814;
-      --break:     #3ab07a;
-      --break-hl:  #4ecb8e;
+      --bg: #1a1512;
+      --surface: #231e1a;
+      --surface2: #2d2722;
+      --border: #3d3530;
+      --text: #f0ebe4;
+      --text-muted: #8a7d74;
+      --accent: #a0705a;
+      --accent-hl: #b8826a;
+      --accent-dim: #3d1f14;
+      --break: #3ab07a;
+      --break-hl: #4ecb8e;
       --break-dim: #0d3324;
-      --lbreak:    #3d98d0;
+      --lbreak: #3d98d0;
       --lbreak-hl: #5ab0e8;
-      --lbreak-dim:#0e2c42;
-      --ring-bg:   #332d28;
+      --lbreak-dim: #0e2c42;
+      --ring-bg: #332d28;
     }
 
     /* ── Reset & Base ──────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
     body {
       font-family: var(--font-ui);
       background: var(--bg);
@@ -101,6 +115,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
     .logo {
       font-family: var(--font-num);
       font-size: 1.25rem;
@@ -108,8 +123,16 @@
       letter-spacing: -0.02em;
       color: var(--text);
     }
-    .logo span { color: var(--accent); }
-    .header-actions { display: flex; gap: 8px; }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
     .icon-btn {
       width: 36px;
       height: 36px;
@@ -124,8 +147,18 @@
       transition: all var(--transition);
       font-size: 14px;
     }
-    .icon-btn:hover { background: var(--surface2); color: var(--text); transform: scale(1.05); }
-    .icon-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+
+    .icon-btn:hover {
+      background: var(--surface2);
+      color: var(--text);
+      transform: scale(1.05);
+    }
+
+    .icon-btn.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* ── Mode Tabs ────────────────────────────────────────────── */
     .mode-tabs {
@@ -136,6 +169,7 @@
       border-radius: 50px;
       border: 1.5px solid var(--border);
     }
+
     .mode-tab {
       font-family: var(--font-ui);
       font-size: 0.78rem;
@@ -150,15 +184,28 @@
       transition: all var(--transition);
       white-space: nowrap;
     }
-    .mode-tab:hover { color: var(--text); }
+
+    .mode-tab:hover {
+      color: var(--text);
+    }
+
     .mode-tab.active {
       background: var(--bg);
       color: var(--text);
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
     }
-    [data-mode="pomodoro"] .mode-tab[data-mode="pomodoro"].active { color: var(--accent); }
-    [data-mode="short"]    .mode-tab[data-mode="short"].active    { color: var(--break); }
-    [data-mode="long"]     .mode-tab[data-mode="long"].active     { color: var(--lbreak); }
+
+    [data-mode="pomodoro"] .mode-tab[data-mode="pomodoro"].active {
+      color: var(--accent);
+    }
+
+    [data-mode="short"] .mode-tab[data-mode="short"].active {
+      color: var(--break);
+    }
+
+    [data-mode="long"] .mode-tab[data-mode="long"].active {
+      color: var(--lbreak);
+    }
 
     /* ── Timer Card ───────────────────────────────────────────── */
     .timer-card {
@@ -176,13 +223,24 @@
     }
 
     /* ── Ring ─────────────────────────────────────────────────── */
-    .ring-wrap { position: relative; width: 220px; height: 220px; }
-    .ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    .ring-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
     .ring-track {
       fill: none;
       stroke: var(--ring-bg);
       stroke-width: 8;
     }
+
     .ring-progress {
       fill: none;
       stroke-width: 8;
@@ -190,6 +248,7 @@
       stroke: var(--accent);
       transition: stroke-dashoffset 1s linear, stroke var(--transition);
     }
+
     .ring-inner {
       position: absolute;
       inset: 0;
@@ -199,6 +258,7 @@
       justify-content: center;
       gap: 4px;
     }
+
     .timer-display {
       font-family: var(--font-num);
       font-size: 3.5rem;
@@ -208,6 +268,7 @@
       color: var(--text);
       transition: color var(--transition);
     }
+
     .session-label {
       font-size: 0.7rem;
       font-weight: 500;
@@ -222,16 +283,27 @@
       gap: 8px;
       align-items: center;
     }
+
     .dot {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--ring-bg);
       transition: all var(--transition);
     }
-    .dot.done { background: var(--accent); transform: scale(1.1); }
+
+    .dot.done {
+      background: var(--accent);
+      transform: scale(1.1);
+    }
 
     /* ── Controls ─────────────────────────────────────────────── */
-    .controls { display: flex; gap: 12px; align-items: center; }
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
     .btn {
       font-family: var(--font-ui);
       font-size: 0.85rem;
@@ -245,19 +317,36 @@
       align-items: center;
       gap: 6px;
     }
+
     .btn-primary {
       padding: 14px 36px;
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 4px 16px rgba(192,57,43,.3);
+      box-shadow: 0 4px 16px rgba(107, 56, 32, .3);
     }
-    .btn-primary:hover { background: var(--accent-hl); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(192,57,43,.4); }
-    .btn-primary:active { transform: translateY(0); }
-    .btn-primary.running { background: var(--text); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
-    .btn-primary.running:hover { background: var(--text-muted); }
+
+    .btn-primary:hover {
+      background: var(--accent-hl);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(107, 56, 32, .4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary.running {
+      background: var(--text);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+    }
+
+    .btn-primary.running:hover {
+      background: var(--text-muted);
+    }
 
     .btn-ghost {
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--surface2);
       color: var(--text-muted);
@@ -265,13 +354,33 @@
       padding: 0;
       justify-content: center;
     }
-    .btn-ghost:hover { color: var(--text); background: var(--bg); transform: scale(1.05); }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      background: var(--bg);
+      transform: scale(1.05);
+    }
 
     /* mode-specific accent colors */
-    [data-mode="short"]  .btn-primary { background: var(--break); box-shadow: 0 4px 16px rgba(46,125,93,.3); }
-    [data-mode="short"]  .btn-primary:hover { background: var(--break-hl); box-shadow: 0 6px 20px rgba(46,125,93,.4); }
-    [data-mode="long"]   .btn-primary { background: var(--lbreak); box-shadow: 0 4px 16px rgba(36,113,163,.3); }
-    [data-mode="long"]   .btn-primary:hover { background: var(--lbreak-hl); box-shadow: 0 6px 20px rgba(36,113,163,.4); }
+    [data-mode="short"] .btn-primary {
+      background: var(--break);
+      box-shadow: 0 4px 16px rgba(46, 125, 93, .3);
+    }
+
+    [data-mode="short"] .btn-primary:hover {
+      background: var(--break-hl);
+      box-shadow: 0 6px 20px rgba(46, 125, 93, .4);
+    }
+
+    [data-mode="long"] .btn-primary {
+      background: var(--lbreak);
+      box-shadow: 0 4px 16px rgba(36, 113, 163, .3);
+    }
+
+    [data-mode="long"] .btn-primary:hover {
+      background: var(--lbreak-hl);
+      box-shadow: 0 6px 20px rgba(36, 113, 163, .4);
+    }
 
     /* ── Status Bar ───────────────────────────────────────────── */
     .status-bar {
@@ -281,12 +390,18 @@
       align-items: center;
       padding: 0 4px;
     }
+
     .status-text {
       font-size: 0.75rem;
       color: var(--text-muted);
       letter-spacing: 0.04em;
     }
-    .kbd-hint { display: flex; gap: 8px; }
+
+    .kbd-hint {
+      display: flex;
+      gap: 8px;
+    }
+
     .kbd {
       font-size: 0.65rem;
       background: var(--surface);
@@ -301,7 +416,7 @@
     .settings-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(26,21,18,.5);
+      background: rgba(26, 21, 18, .5);
       backdrop-filter: blur(4px);
       z-index: 100;
       display: flex;
@@ -312,7 +427,12 @@
       pointer-events: none;
       transition: opacity var(--transition);
     }
-    .settings-overlay.open { opacity: 1; pointer-events: all; }
+
+    .settings-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
     .settings-panel {
       width: 100%;
       max-width: 440px;
@@ -320,26 +440,36 @@
       border: 1.5px solid var(--border);
       border-radius: 24px 24px 20px 20px;
       padding: 28px 28px 32px;
-      box-shadow: 0 -8px 48px rgba(0,0,0,.15);
+      box-shadow: 0 -8px 48px rgba(0, 0, 0, .15);
       transform: translateY(40px);
       transition: transform var(--transition);
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-    .settings-overlay.open .settings-panel { transform: translateY(0); }
+
+    .settings-overlay.open .settings-panel {
+      transform: translateY(0);
+    }
 
     .settings-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .settings-title {
       font-family: var(--font-num);
       font-size: 1.1rem;
       font-weight: 600;
     }
-    .settings-section { display: flex; flex-direction: column; gap: 14px; }
+
+    .settings-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .settings-label {
       font-size: 0.7rem;
       font-weight: 500;
@@ -349,17 +479,20 @@
       padding-bottom: 2px;
       border-bottom: 1px solid var(--border);
     }
+
     .setting-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
     }
+
     .setting-row label {
       font-size: 0.88rem;
       color: var(--text);
       flex: 1;
     }
+
     .num-input-wrap {
       display: flex;
       align-items: center;
@@ -369,8 +502,10 @@
       border-radius: 8px;
       overflow: hidden;
     }
+
     .num-input-wrap button {
-      width: 28px; height: 28px;
+      width: 28px;
+      height: 28px;
       border: none;
       background: transparent;
       color: var(--text-muted);
@@ -381,7 +516,12 @@
       justify-content: center;
       transition: all 150ms;
     }
-    .num-input-wrap button:hover { background: var(--border); color: var(--text); }
+
+    .num-input-wrap button:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
     .num-input-wrap input {
       width: 40px;
       border: none;
@@ -393,12 +533,26 @@
       color: var(--text);
       -moz-appearance: textfield;
     }
+
     .num-input-wrap input::-webkit-outer-spin-button,
-    .num-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .num-input-wrap input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
 
     /* Toggle switch */
-    .toggle { position: relative; display: inline-flex; width: 40px; height: 22px; }
-    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle {
+      position: relative;
+      display: inline-flex;
+      width: 40px;
+      height: 22px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
     .toggle-track {
       position: absolute;
       inset: 0;
@@ -407,18 +561,27 @@
       cursor: pointer;
       transition: background var(--transition);
     }
+
     .toggle-track::after {
       content: '';
       position: absolute;
-      width: 16px; height: 16px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: #fff;
-      top: 3px; left: 3px;
+      top: 3px;
+      left: 3px;
       transition: transform var(--transition);
-      box-shadow: 0 1px 4px rgba(0,0,0,.2);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
     }
-    .toggle input:checked + .toggle-track { background: var(--accent); }
-    .toggle input:checked + .toggle-track::after { transform: translateX(18px); }
+
+    .toggle input:checked+.toggle-track {
+      background: var(--accent);
+    }
+
+    .toggle input:checked+.toggle-track::after {
+      transform: translateX(18px);
+    }
 
     /* ── Alert Toast ──────────────────────────────────────────── */
     .toast {
@@ -431,31 +594,58 @@
       font-size: 0.82rem;
       padding: 10px 20px;
       border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .25);
       z-index: 200;
-      transition: transform 400ms cubic-bezier(.34,1.56,.64,1), opacity 400ms;
+      transition: transform 400ms cubic-bezier(.34, 1.56, .64, 1), opacity 400ms;
       opacity: 0;
       white-space: nowrap;
     }
-    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
 
     /* ── Pulse animation on running ring ──────────────────────── */
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .7; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .7;
+      }
     }
+
     .ring-progress.running {
       animation: pulse 2s ease-in-out infinite;
     }
 
     /* ── Completion flash ─────────────────────────────────────── */
     @keyframes complete-flash {
-      0% { opacity: 1; }
-      25% { opacity: .3; }
-      50% { opacity: 1; }
-      75% { opacity: .3; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 1;
+      }
+
+      25% {
+        opacity: .3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      75% {
+        opacity: .3;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
+
     .ring-progress.complete {
       animation: complete-flash 0.8s ease;
     }
@@ -469,489 +659,539 @@
       padding: 2px 10px;
       letter-spacing: 0.04em;
     }
-    [data-mode="short"] .auto-badge { background: var(--break-dim); color: var(--break); }
-    [data-mode="long"]  .auto-badge { background: var(--lbreak-dim); color: var(--lbreak); }
+
+    [data-mode="short"] .auto-badge {
+      background: var(--break-dim);
+      color: var(--break);
+    }
+
+    [data-mode="long"] .auto-badge {
+      background: var(--lbreak-dim);
+      color: var(--lbreak);
+    }
 
     /* ── Responsive ───────────────────────────────────────────── */
     @media (max-width: 400px) {
-      .timer-card { padding: 32px 20px 28px; }
-      .ring-wrap { width: 190px; height: 190px; }
-      .timer-display { font-size: 3rem; }
-      .settings-panel { padding: 24px 20px 28px; }
+      .timer-card {
+        padding: 32px 20px 28px;
+      }
+
+      .ring-wrap {
+        width: 190px;
+        height: 190px;
+      }
+
+      .timer-display {
+        font-size: 3rem;
+      }
+
+      .settings-panel {
+        padding: 24px 20px 28px;
+      }
     }
   </style>
 </head>
+
 <body>
-<div class="app" id="app">
+  <div class="app" id="app">
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">Pomo<span>●</span>doro</div>
-    <div class="header-actions">
-      <button class="icon-btn" id="sound-btn" title="环境音效" aria-label="切换音效">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      </button>
-      <button class="icon-btn" id="theme-btn" title="切换主题" aria-label="切换暗色模式">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-      <button class="icon-btn" id="settings-btn" title="设置" aria-label="打开设置">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
-    </div>
-  </header>
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">Pomo<span>●</span>doro</div>
+      <div class="header-actions">
+        <button class="icon-btn" id="sound-btn" title="环境音效" aria-label="切换音效">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="theme-btn" title="切换主题" aria-label="切换暗色模式">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="settings-btn" title="设置" aria-label="打开设置">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+      </div>
+    </header>
 
-  <!-- Mode Tabs -->
-  <nav class="mode-tabs" role="tablist" aria-label="计时模式">
-    <button class="mode-tab active" data-mode="pomodoro" role="tab" aria-selected="true">专注</button>
-    <button class="mode-tab" data-mode="short" role="tab" aria-selected="false">短休息</button>
-    <button class="mode-tab" data-mode="long" role="tab" aria-selected="false">长休息</button>
-  </nav>
+    <!-- Mode Tabs -->
+    <nav class="mode-tabs" role="tablist" aria-label="计时模式">
+      <button class="mode-tab active" data-mode="pomodoro" role="tab" aria-selected="true">专注</button>
+      <button class="mode-tab" data-mode="short" role="tab" aria-selected="false">短休息</button>
+      <button class="mode-tab" data-mode="long" role="tab" aria-selected="false">长休息</button>
+    </nav>
 
-  <!-- Timer Card -->
-  <main class="timer-card" id="timer-card" aria-live="polite" aria-atomic="true">
-    <!-- Ring -->
-    <div class="ring-wrap" role="img" aria-label="计时进度环">
-      <svg class="ring-svg" viewBox="0 0 220 220" aria-hidden="true">
-        <circle class="ring-track" cx="110" cy="110" r="96"/>
-        <circle class="ring-progress" id="ring" cx="110" cy="110" r="96"/>
-      </svg>
-      <div class="ring-inner">
-        <div class="timer-display" id="timer-display">25:00</div>
-        <div class="session-label" id="session-label">专注时间</div>
+    <!-- Timer Card -->
+    <main class="timer-card" id="timer-card" aria-live="polite" aria-atomic="true">
+      <!-- Ring -->
+      <div class="ring-wrap" role="img" aria-label="计时进度环">
+        <svg class="ring-svg" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="ring-track" cx="110" cy="110" r="96" />
+          <circle class="ring-progress" id="ring" cx="110" cy="110" r="96" />
+        </svg>
+        <div class="ring-inner">
+          <div class="timer-display" id="timer-display">25:00</div>
+          <div class="session-label" id="session-label">专注时间</div>
+        </div>
+      </div>
+
+      <!-- Session dots -->
+      <div class="session-dots" role="status" aria-label="今日番茄数">
+        <div class="dot" id="dot-0" aria-label="第1个番茄"></div>
+        <div class="dot" id="dot-1" aria-label="第2个番茄"></div>
+        <div class="dot" id="dot-2" aria-label="第3个番茄"></div>
+        <div class="dot" id="dot-3" aria-label="第4个番茄"></div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn-ghost" id="reset-btn" title="重置 (R)" aria-label="重置计时器">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 .49-4" />
+          </svg>
+        </button>
+        <button class="btn btn-primary" id="main-btn" aria-label="开始计时">
+          <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+          <span id="main-btn-label">开始</span>
+        </button>
+        <button class="btn btn-ghost" id="skip-btn" title="跳过" aria-label="跳过当前阶段">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 4 15 12 5 20 5 4" />
+            <line x1="19" y1="5" x2="19" y2="19" />
+          </svg>
+        </button>
+      </div>
+    </main>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-text" id="status-text">準備就緒</div>
+      <div class="kbd-hint" aria-label="键盘快捷键">
+        <span class="kbd">Space</span>
+        <span class="kbd">R</span>
       </div>
     </div>
 
-    <!-- Session dots -->
-    <div class="session-dots" role="status" aria-label="今日番茄数">
-      <div class="dot" id="dot-0" aria-label="第1个番茄"></div>
-      <div class="dot" id="dot-1" aria-label="第2个番茄"></div>
-      <div class="dot" id="dot-2" aria-label="第3个番茄"></div>
-      <div class="dot" id="dot-3" aria-label="第4个番茄"></div>
-    </div>
+  </div><!-- /.app -->
 
-    <!-- Controls -->
-    <div class="controls">
-      <button class="btn btn-ghost" id="reset-btn" title="重置 (R)" aria-label="重置计时器">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg>
-      </button>
-      <button class="btn btn-primary" id="main-btn" aria-label="开始计时">
-        <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span id="main-btn-label">开始</span>
-      </button>
-      <button class="btn btn-ghost" id="skip-btn" title="跳过" aria-label="跳过当前阶段">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
-      </button>
-    </div>
-  </main>
+  <!-- Settings Overlay -->
+  <div class="settings-overlay" id="settings-overlay" role="dialog" aria-modal="true" aria-label="设置">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <span class="settings-title">设置</span>
+        <button class="icon-btn" id="settings-close" aria-label="关闭设置">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
 
-  <!-- Status Bar -->
-  <div class="status-bar">
-    <div class="status-text" id="status-text">準備就緒</div>
-    <div class="kbd-hint" aria-label="键盘快捷键">
-      <span class="kbd">Space</span>
-      <span class="kbd">R</span>
+      <div class="settings-section">
+        <div class="settings-label">时长（分钟）</div>
+        <div class="setting-row">
+          <label for="set-pomodoro">专注</label>
+          <div class="num-input-wrap">
+            <button onclick="adjustInput('set-pomodoro',-1)" aria-label="减少">−</button>
+            <input type="number" id="set-pomodoro" min="1" max="99" value="25" aria-label="专注时长" />
+            <button onclick="adjustInput('set-pomodoro',1)" aria-label="增加">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label for="set-short">短休息</label>
+          <div class="num-input-wrap">
+            <button onclick="adjustInput('set-short',-1)" aria-label="减少">−</button>
+            <input type="number" id="set-short" min="1" max="30" value="5" aria-label="短休息时长" />
+            <button onclick="adjustInput('set-short',1)" aria-label="增加">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label for="set-long">长休息</label>
+          <div class="num-input-wrap">
+            <button onclick="adjustInput('set-long',-1)" aria-label="减少">−</button>
+            <input type="number" id="set-long" min="1" max="60" value="15" aria-label="长休息时长" />
+            <button onclick="adjustInput('set-long',1)" aria-label="增加">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-label">行为</div>
+        <div class="setting-row">
+          <label for="auto-start-toggle">休息后自动开始专注</label>
+          <label class="toggle">
+            <input type="checkbox" id="auto-start-toggle" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label for="notif-toggle">桌面通知</label>
+          <label class="toggle">
+            <input type="checkbox" id="notif-toggle" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="apply-settings"
+        style="align-self:stretch;justify-content:center;border-radius:12px;padding:14px;">
+        应用设置
+      </button>
     </div>
   </div>
 
-</div><!-- /.app -->
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- Settings Overlay -->
-<div class="settings-overlay" id="settings-overlay" role="dialog" aria-modal="true" aria-label="设置">
-  <div class="settings-panel">
-    <div class="settings-header">
-      <span class="settings-title">设置</span>
-      <button class="icon-btn" id="settings-close" aria-label="关闭设置">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
+  <script>
+    (function () {
+      'use strict';
 
-    <div class="settings-section">
-      <div class="settings-label">时长（分钟）</div>
-      <div class="setting-row">
-        <label for="set-pomodoro">专注</label>
-        <div class="num-input-wrap">
-          <button onclick="adjustInput('set-pomodoro',-1)" aria-label="减少">−</button>
-          <input type="number" id="set-pomodoro" min="1" max="99" value="25" aria-label="专注时长" />
-          <button onclick="adjustInput('set-pomodoro',1)" aria-label="增加">+</button>
-        </div>
-      </div>
-      <div class="setting-row">
-        <label for="set-short">短休息</label>
-        <div class="num-input-wrap">
-          <button onclick="adjustInput('set-short',-1)" aria-label="减少">−</button>
-          <input type="number" id="set-short" min="1" max="30" value="5" aria-label="短休息时长" />
-          <button onclick="adjustInput('set-short',1)" aria-label="增加">+</button>
-        </div>
-      </div>
-      <div class="setting-row">
-        <label for="set-long">长休息</label>
-        <div class="num-input-wrap">
-          <button onclick="adjustInput('set-long',-1)" aria-label="减少">−</button>
-          <input type="number" id="set-long" min="1" max="60" value="15" aria-label="长休息时长" />
-          <button onclick="adjustInput('set-long',1)" aria-label="增加">+</button>
-        </div>
-      </div>
-    </div>
+      /* ── State ─────────────────────────────────────────────────── */
+      const state = {
+        mode: 'pomodoro',          // 'pomodoro' | 'short' | 'long'
+        running: false,
+        secondsLeft: 25 * 60,
+        totalSeconds: 25 * 60,
+        completedPomodoros: 0,     // in current cycle (max 4)
+        totalCompleted: 0,
+        autoStart: false,
+        notificationsOn: false,
+        soundOn: false,
+        durations: { pomodoro: 25, short: 5, long: 15 },
+      };
 
-    <div class="settings-section">
-      <div class="settings-label">行为</div>
-      <div class="setting-row">
-        <label for="auto-start-toggle">休息后自动开始专注</label>
-        <label class="toggle">
-          <input type="checkbox" id="auto-start-toggle" />
-          <span class="toggle-track"></span>
-        </label>
-      </div>
-      <div class="setting-row">
-        <label for="notif-toggle">桌面通知</label>
-        <label class="toggle">
-          <input type="checkbox" id="notif-toggle" />
-          <span class="toggle-track"></span>
-        </label>
-      </div>
-    </div>
+      let tickInterval = null;
+      let audioCtx = null;
+      let tickNode = null;
 
-    <button class="btn btn-primary" id="apply-settings" style="align-self:stretch;justify-content:center;border-radius:12px;padding:14px;">
-      应用设置
-    </button>
-  </div>
-</div>
+      /* ── DOM refs ─────────────────────────────────────────────── */
+      const $ = id => document.getElementById(id);
+      const ring = $('ring');
+      const timerDisplay = $('timer-display');
+      const sessionLabel = $('session-label');
+      const mainBtn = $('main-btn');
+      const mainBtnLabel = $('main-btn-label');
+      const playIcon = $('play-icon');
+      const resetBtn = $('reset-btn');
+      const skipBtn = $('skip-btn');
+      const statusText = $('status-text');
+      const themeBtn = $('theme-btn');
+      const soundBtn = $('sound-btn');
+      const settingsBtn = $('settings-btn');
+      const settingsClose = $('settings-close');
+      const settingsOverlay = $('settings-overlay');
+      const applySettings = $('apply-settings');
+      const autoStartToggle = $('auto-start-toggle');
+      const notifToggle = $('notif-toggle');
+      const dots = [0, 1, 2, 3].map(i => $('dot-' + i));
+      const toast = $('toast');
+      const appEl = $('app');
+      const modeTabs = document.querySelectorAll('.mode-tab');
 
-<!-- Toast -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+      /* ── Ring geometry ────────────────────────────────────────── */
+      const r = 96;
+      const circumference = 2 * Math.PI * r;
+      ring.style.strokeDasharray = circumference;
 
-<script>
-(function () {
-  'use strict';
+      function updateRing(progress) {
+        // progress: 1.0 = full, 0.0 = empty
+        const offset = circumference * (1 - progress);
+        ring.style.strokeDashoffset = offset;
+      }
 
-  /* ── State ─────────────────────────────────────────────────── */
-  const state = {
-    mode: 'pomodoro',          // 'pomodoro' | 'short' | 'long'
-    running: false,
-    secondsLeft: 25 * 60,
-    totalSeconds: 25 * 60,
-    completedPomodoros: 0,     // in current cycle (max 4)
-    totalCompleted: 0,
-    autoStart: false,
-    notificationsOn: false,
-    soundOn: false,
-    durations: { pomodoro: 25, short: 5, long: 15 },
-  };
+      function setRingColor() {
+        const colors = {
+          pomodoro: 'var(--accent)',
+          short: 'var(--break)',
+          long: 'var(--lbreak)',
+        };
+        ring.style.stroke = colors[state.mode];
+      }
 
-  let tickInterval = null;
-  let audioCtx = null;
-  let tickNode = null;
+      /* ── Display ──────────────────────────────────────────────── */
+      function formatTime(s) {
+        const m = Math.floor(s / 60).toString().padStart(2, '0');
+        const sec = (s % 60).toString().padStart(2, '0');
+        return `${m}:${sec}`;
+      }
 
-  /* ── DOM refs ─────────────────────────────────────────────── */
-  const $ = id => document.getElementById(id);
-  const ring           = $('ring');
-  const timerDisplay   = $('timer-display');
-  const sessionLabel   = $('session-label');
-  const mainBtn        = $('main-btn');
-  const mainBtnLabel   = $('main-btn-label');
-  const playIcon       = $('play-icon');
-  const resetBtn       = $('reset-btn');
-  const skipBtn        = $('skip-btn');
-  const statusText     = $('status-text');
-  const themeBtn       = $('theme-btn');
-  const soundBtn       = $('sound-btn');
-  const settingsBtn    = $('settings-btn');
-  const settingsClose  = $('settings-close');
-  const settingsOverlay= $('settings-overlay');
-  const applySettings  = $('apply-settings');
-  const autoStartToggle= $('auto-start-toggle');
-  const notifToggle    = $('notif-toggle');
-  const dots           = [0,1,2,3].map(i => $('dot-'+i));
-  const toast          = $('toast');
-  const appEl          = $('app');
-  const modeTabs       = document.querySelectorAll('.mode-tab');
+      const modeLabels = { pomodoro: '专注时间', short: '短暂休息', long: '长时休息' };
 
-  /* ── Ring geometry ────────────────────────────────────────── */
-  const r = 96;
-  const circumference = 2 * Math.PI * r;
-  ring.style.strokeDasharray = circumference;
+      function render() {
+        const progress = state.totalSeconds > 0 ? state.secondsLeft / state.totalSeconds : 0;
+        timerDisplay.textContent = formatTime(state.secondsLeft);
+        sessionLabel.textContent = modeLabels[state.mode];
+        updateRing(progress);
+        document.title = `${formatTime(state.secondsLeft)} — Pomodoro`;
 
-  function updateRing(progress) {
-    // progress: 1.0 = full, 0.0 = empty
-    const offset = circumference * (1 - progress);
-    ring.style.strokeDashoffset = offset;
-  }
+        // Main button
+        if (state.running) {
+          mainBtn.classList.add('running');
+          mainBtnLabel.textContent = '暂停';
+          playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+          ring.classList.add('running');
+        } else {
+          mainBtn.classList.remove('running');
+          mainBtnLabel.textContent = state.secondsLeft < state.totalSeconds ? '继续' : '开始';
+          playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+          ring.classList.remove('running');
+        }
 
-  function setRingColor() {
-    const colors = {
-      pomodoro: 'var(--accent)',
-      short:    'var(--break)',
-      long:     'var(--lbreak)',
-    };
-    ring.style.stroke = colors[state.mode];
-  }
+        // dots
+        dots.forEach((d, i) => {
+          d.classList.toggle('done', i < state.completedPomodoros);
+        });
 
-  /* ── Display ──────────────────────────────────────────────── */
-  function formatTime(s) {
-    const m = Math.floor(s / 60).toString().padStart(2, '0');
-    const sec = (s % 60).toString().padStart(2, '0');
-    return `${m}:${sec}`;
-  }
+        // status
+        if (state.running) {
+          const mins = Math.ceil(state.secondsLeft / 60);
+          statusText.textContent = state.mode === 'pomodoro'
+            ? `专注中 · 还剩 ${mins} 分钟`
+            : `休息中 · 还剩 ${mins} 分钟`;
+        } else if (state.secondsLeft === state.totalSeconds) {
+          statusText.textContent = '准备就绪';
+        } else {
+          statusText.textContent = '已暂停';
+        }
+      }
 
-  const modeLabels = { pomodoro: '专注时间', short: '短暂休息', long: '长时休息' };
+      /* ── Timer Logic ──────────────────────────────────────────── */
+      function start() {
+        if (state.running) return;
+        if (state.notificationsOn && Notification.permission === 'default') {
+          Notification.requestPermission().then(p => {
+            if (p === 'denied') { state.notificationsOn = false; notifToggle.checked = false; }
+          });
+        }
+        state.running = true;
+        tickInterval = setInterval(tick, 1000);
+        render();
+        if (state.soundOn) startTick();
+      }
 
-  function render() {
-    const progress = state.totalSeconds > 0 ? state.secondsLeft / state.totalSeconds : 0;
-    timerDisplay.textContent = formatTime(state.secondsLeft);
-    sessionLabel.textContent = modeLabels[state.mode];
-    updateRing(progress);
-    document.title = `${formatTime(state.secondsLeft)} — Pomodoro`;
+      function pause() {
+        if (!state.running) return;
+        state.running = false;
+        clearInterval(tickInterval);
+        render();
+        if (tickNode) { tickNode.stop(); tickNode = null; }
+      }
 
-    // Main button
-    if (state.running) {
-      mainBtn.classList.add('running');
-      mainBtnLabel.textContent = '暂停';
-      playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      ring.classList.add('running');
-    } else {
-      mainBtn.classList.remove('running');
-      mainBtnLabel.textContent = state.secondsLeft < state.totalSeconds ? '继续' : '开始';
-      playIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
-      ring.classList.remove('running');
-    }
+      function reset() {
+        pause();
+        state.secondsLeft = state.totalSeconds;
+        render();
+      }
 
-    // dots
-    dots.forEach((d, i) => {
-      d.classList.toggle('done', i < state.completedPomodoros);
-    });
+      function tick() {
+        if (state.secondsLeft <= 0) {
+          complete();
+          return;
+        }
+        state.secondsLeft--;
+        render();
+      }
 
-    // status
-    if (state.running) {
-      const mins = Math.ceil(state.secondsLeft / 60);
-      statusText.textContent = state.mode === 'pomodoro'
-        ? `专注中 · 还剩 ${mins} 分钟`
-        : `休息中 · 还剩 ${mins} 分钟`;
-    } else if (state.secondsLeft === state.totalSeconds) {
-      statusText.textContent = '准备就绪';
-    } else {
-      statusText.textContent = '已暂停';
-    }
-  }
+      function complete() {
+        pause();
+        ring.classList.add('complete');
+        setTimeout(() => ring.classList.remove('complete'), 900);
 
-  /* ── Timer Logic ──────────────────────────────────────────── */
-  function start() {
-    if (state.running) return;
-    if (state.notificationsOn && Notification.permission === 'default') {
-      Notification.requestPermission().then(p => {
-        if (p === 'denied') { state.notificationsOn = false; notifToggle.checked = false; }
+        if (state.mode === 'pomodoro') {
+          state.completedPomodoros = (state.completedPomodoros + 1) % 5; // 5 resets to 0 for next cycle
+          if (state.completedPomodoros === 0) state.completedPomodoros = 0; // already 0 at 4+1
+          // But we want to mark 4 then reset; let's just cap at 4 visually
+          state.totalCompleted++;
+          sendNotification('🍅 专注完成！', '休息一下吧。');
+          showToast('🍅 专注完成！去休息一下。');
+          // suggest break
+          const nextMode = (state.totalCompleted % 4 === 0) ? 'long' : 'short';
+          setTimeout(() => {
+            setMode(nextMode);
+            if (state.autoStart) start();
+          }, 800);
+        } else {
+          sendNotification('☕ 休息结束', '准备好专注了吗？');
+          showToast('☕ 休息结束，准备好了吗？');
+          setTimeout(() => {
+            setMode('pomodoro');
+            if (state.autoStart) start();
+          }, 800);
+        }
+      }
+
+      function setMode(mode) {
+        pause();
+        state.mode = mode;
+        state.totalSeconds = state.durations[mode] * 60;
+        state.secondsLeft = state.totalSeconds;
+        document.documentElement.dataset.mode = mode;
+        modeTabs.forEach(t => {
+          const isActive = t.dataset.mode === mode;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive);
+        });
+        setRingColor();
+        // update dot appearance based on cycle
+        const pomCount = Math.min(state.completedPomodoros, 4);
+        dots.forEach((d, i) => d.classList.toggle('done', i < pomCount));
+        render();
+      }
+
+      /* ── Sound ────────────────────────────────────────────────── */
+      function getAudioCtx() {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return audioCtx;
+      }
+
+      function startTick() {
+        if (tickNode) return;
+        const ctx = getAudioCtx();
+        const bufSize = ctx.sampleRate * 0.5;
+        const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.02;
+        const src = ctx.createBufferSource();
+        src.buffer = buffer;
+        src.loop = true;
+        const gain = ctx.createGain();
+        gain.gain.value = 0.18;
+        src.connect(gain);
+        gain.connect(ctx.destination);
+        src.start();
+        tickNode = src;
+      }
+
+      function stopTick() {
+        if (tickNode) { try { tickNode.stop(); } catch (e) { } tickNode = null; }
+      }
+
+      /* ── Notifications ────────────────────────────────────────── */
+      function sendNotification(title, body) {
+        if (!state.notificationsOn) return;
+        if (Notification.permission === 'granted') {
+          new Notification(title, { body, icon: '' });
+        }
+      }
+
+      /* ── Toast ────────────────────────────────────────────────── */
+      let toastTimer = null;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+
+      /* ── Settings helpers ─────────────────────────────────────── */
+      window.adjustInput = function (id, delta) {
+        const el = $(id);
+        const val = parseInt(el.value) + delta;
+        el.value = Math.max(parseInt(el.min), Math.min(parseInt(el.max), val));
+      };
+
+      /* ── Event Listeners ──────────────────────────────────────── */
+      mainBtn.addEventListener('click', () => { state.running ? pause() : start(); });
+      resetBtn.addEventListener('click', reset);
+      skipBtn.addEventListener('click', () => {
+        state.secondsLeft = 0;
+        tick(); // trigger complete
       });
-    }
-    state.running = true;
-    tickInterval = setInterval(tick, 1000);
-    render();
-    if (state.soundOn) startTick();
-  }
 
-  function pause() {
-    if (!state.running) return;
-    state.running = false;
-    clearInterval(tickInterval);
-    render();
-    if (tickNode) { tickNode.stop(); tickNode = null; }
-  }
-
-  function reset() {
-    pause();
-    state.secondsLeft = state.totalSeconds;
-    render();
-  }
-
-  function tick() {
-    if (state.secondsLeft <= 0) {
-      complete();
-      return;
-    }
-    state.secondsLeft--;
-    render();
-  }
-
-  function complete() {
-    pause();
-    ring.classList.add('complete');
-    setTimeout(() => ring.classList.remove('complete'), 900);
-
-    if (state.mode === 'pomodoro') {
-      state.completedPomodoros = (state.completedPomodoros + 1) % 5; // 5 resets to 0 for next cycle
-      if (state.completedPomodoros === 0) state.completedPomodoros = 0; // already 0 at 4+1
-      // But we want to mark 4 then reset; let's just cap at 4 visually
-      state.totalCompleted++;
-      sendNotification('🍅 专注完成！', '休息一下吧。');
-      showToast('🍅 专注完成！去休息一下。');
-      // suggest break
-      const nextMode = (state.totalCompleted % 4 === 0) ? 'long' : 'short';
-      setTimeout(() => {
-        setMode(nextMode);
-        if (state.autoStart) start();
-      }, 800);
-    } else {
-      sendNotification('☕ 休息结束', '准备好专注了吗？');
-      showToast('☕ 休息结束，准备好了吗？');
-      setTimeout(() => {
-        setMode('pomodoro');
-        if (state.autoStart) start();
-      }, 800);
-    }
-  }
-
-  function setMode(mode) {
-    pause();
-    state.mode = mode;
-    state.totalSeconds = state.durations[mode] * 60;
-    state.secondsLeft = state.totalSeconds;
-    document.documentElement.dataset.mode = mode;
-    modeTabs.forEach(t => {
-      const isActive = t.dataset.mode === mode;
-      t.classList.toggle('active', isActive);
-      t.setAttribute('aria-selected', isActive);
-    });
-    setRingColor();
-    // update dot appearance based on cycle
-    const pomCount = Math.min(state.completedPomodoros, 4);
-    dots.forEach((d, i) => d.classList.toggle('done', i < pomCount));
-    render();
-  }
-
-  /* ── Sound ────────────────────────────────────────────────── */
-  function getAudioCtx() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    return audioCtx;
-  }
-
-  function startTick() {
-    if (tickNode) return;
-    const ctx = getAudioCtx();
-    const bufSize = ctx.sampleRate * 0.5;
-    const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.02;
-    const src = ctx.createBufferSource();
-    src.buffer = buffer;
-    src.loop = true;
-    const gain = ctx.createGain();
-    gain.gain.value = 0.18;
-    src.connect(gain);
-    gain.connect(ctx.destination);
-    src.start();
-    tickNode = src;
-  }
-
-  function stopTick() {
-    if (tickNode) { try { tickNode.stop(); } catch(e) {} tickNode = null; }
-  }
-
-  /* ── Notifications ────────────────────────────────────────── */
-  function sendNotification(title, body) {
-    if (!state.notificationsOn) return;
-    if (Notification.permission === 'granted') {
-      new Notification(title, { body, icon: '' });
-    }
-  }
-
-  /* ── Toast ────────────────────────────────────────────────── */
-  let toastTimer = null;
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
-  }
-
-  /* ── Settings helpers ─────────────────────────────────────── */
-  window.adjustInput = function(id, delta) {
-    const el = $(id);
-    const val = parseInt(el.value) + delta;
-    el.value = Math.max(parseInt(el.min), Math.min(parseInt(el.max), val));
-  };
-
-  /* ── Event Listeners ──────────────────────────────────────── */
-  mainBtn.addEventListener('click', () => { state.running ? pause() : start(); });
-  resetBtn.addEventListener('click', reset);
-  skipBtn.addEventListener('click', () => {
-    state.secondsLeft = 0;
-    tick(); // trigger complete
-  });
-
-  modeTabs.forEach(tab => {
-    tab.addEventListener('click', () => setMode(tab.dataset.mode));
-  });
-
-  themeBtn.addEventListener('click', () => {
-    const dark = document.documentElement.dataset.theme === 'dark';
-    document.documentElement.dataset.theme = dark ? 'light' : 'dark';
-    themeBtn.classList.toggle('active', !dark);
-    showToast(dark ? '☀️ 切换至亮色模式' : '🌙 切换至暗色模式');
-  });
-
-  soundBtn.addEventListener('click', () => {
-    state.soundOn = !state.soundOn;
-    soundBtn.classList.toggle('active', state.soundOn);
-    if (state.soundOn && state.running) startTick();
-    else stopTick();
-    showToast(state.soundOn ? '🔊 环境音效已开启' : '🔇 环境音效已关闭');
-  });
-
-  settingsBtn.addEventListener('click', () => {
-    settingsOverlay.classList.add('open');
-    settingsBtn.setAttribute('aria-expanded', 'true');
-  });
-
-  function closeSettings() {
-    settingsOverlay.classList.remove('open');
-    settingsBtn.setAttribute('aria-expanded', 'false');
-  }
-  settingsClose.addEventListener('click', closeSettings);
-  settingsOverlay.addEventListener('click', e => { if (e.target === settingsOverlay) closeSettings(); });
-
-  applySettings.addEventListener('click', () => {
-    const pd = Math.max(1, parseInt($('set-pomodoro').value) || 25);
-    const sd = Math.max(1, parseInt($('set-short').value) || 5);
-    const ld = Math.max(1, parseInt($('set-long').value) || 15);
-    state.durations.pomodoro = pd;
-    state.durations.short = sd;
-    state.durations.long = ld;
-    state.autoStart = autoStartToggle.checked;
-    const wantsNotif = notifToggle.checked;
-    if (wantsNotif && Notification.permission !== 'granted') {
-      Notification.requestPermission().then(p => {
-        state.notificationsOn = p === 'granted';
-        notifToggle.checked = state.notificationsOn;
+      modeTabs.forEach(tab => {
+        tab.addEventListener('click', () => setMode(tab.dataset.mode));
       });
-    } else {
-      state.notificationsOn = wantsNotif;
-    }
-    // reset current mode with new duration
-    state.totalSeconds = state.durations[state.mode] * 60;
-    state.secondsLeft = state.totalSeconds;
-    pause();
-    render();
-    closeSettings();
-    showToast('✓ 设置已应用');
-  });
 
-  /* ── Keyboard shortcuts ───────────────────────────────────── */
-  document.addEventListener('keydown', e => {
-    if (e.target.tagName === 'INPUT') return;
-    if (e.code === 'Space') { e.preventDefault(); state.running ? pause() : start(); }
-    if (e.code === 'KeyR') reset();
-  });
+      themeBtn.addEventListener('click', () => {
+        const dark = document.documentElement.dataset.theme === 'dark';
+        document.documentElement.dataset.theme = dark ? 'light' : 'dark';
+        themeBtn.classList.toggle('active', !dark);
+        showToast(dark ? '☀️ 切换至亮色模式' : '🌙 切换至暗色模式');
+      });
 
-  /* ── Page Visibility (pause on hide) ─────────────────────── */
-  document.addEventListener('visibilitychange', () => {
-    // keep running in background — no action needed, setInterval persists
-  });
+      soundBtn.addEventListener('click', () => {
+        state.soundOn = !state.soundOn;
+        soundBtn.classList.toggle('active', state.soundOn);
+        if (state.soundOn && state.running) startTick();
+        else stopTick();
+        showToast(state.soundOn ? '🔊 环境音效已开启' : '🔇 环境音效已关闭');
+      });
 
-  /* ── Init ─────────────────────────────────────────────────── */
-  document.documentElement.dataset.mode = 'pomodoro';
-  setRingColor();
-  updateRing(1);
-  render();
+      settingsBtn.addEventListener('click', () => {
+        settingsOverlay.classList.add('open');
+        settingsBtn.setAttribute('aria-expanded', 'true');
+      });
 
-})();
-</script>
+      function closeSettings() {
+        settingsOverlay.classList.remove('open');
+        settingsBtn.setAttribute('aria-expanded', 'false');
+      }
+      settingsClose.addEventListener('click', closeSettings);
+      settingsOverlay.addEventListener('click', e => { if (e.target === settingsOverlay) closeSettings(); });
+
+      applySettings.addEventListener('click', () => {
+        const pd = Math.max(1, parseInt($('set-pomodoro').value) || 25);
+        const sd = Math.max(1, parseInt($('set-short').value) || 5);
+        const ld = Math.max(1, parseInt($('set-long').value) || 15);
+        state.durations.pomodoro = pd;
+        state.durations.short = sd;
+        state.durations.long = ld;
+        state.autoStart = autoStartToggle.checked;
+        const wantsNotif = notifToggle.checked;
+        if (wantsNotif && Notification.permission !== 'granted') {
+          Notification.requestPermission().then(p => {
+            state.notificationsOn = p === 'granted';
+            notifToggle.checked = state.notificationsOn;
+          });
+        } else {
+          state.notificationsOn = wantsNotif;
+        }
+        // reset current mode with new duration
+        state.totalSeconds = state.durations[state.mode] * 60;
+        state.secondsLeft = state.totalSeconds;
+        pause();
+        render();
+        closeSettings();
+        showToast('✓ 设置已应用');
+      });
+
+      /* ── Keyboard shortcuts ───────────────────────────────────── */
+      document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT') return;
+        if (e.code === 'Space') { e.preventDefault(); state.running ? pause() : start(); }
+        if (e.code === 'KeyR') reset();
+      });
+
+      /* ── Page Visibility (pause on hide) ─────────────────────── */
+      document.addEventListener('visibilitychange', () => {
+        // keep running in background — no action needed, setInterval persists
+      });
+
+      /* ── Init ─────────────────────────────────────────────────── */
+      document.documentElement.dataset.mode = 'pomodoro';
+      setRingColor();
+      updateRing(1);
+      render();
+
+    })();
+  </script>
 </body>
+
 </html>
